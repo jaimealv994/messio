@@ -4,6 +4,8 @@ import 'package:messio/widgets/ChatListWidget.dart';
 import 'package:messio/widgets/InputWidget.dart';
 
 class ConversationPage extends StatefulWidget {
+  const ConversationPage();
+
   @override
   _ConversationPageState createState() => _ConversationPageState();
 }

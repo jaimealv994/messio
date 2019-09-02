@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:messio/pages/ConversationPage.dart';
 
 class ConversationPageList extends StatefulWidget {
+  const ConversationPageList();
+
   @override
   _ConversationPageListState createState() => _ConversationPageListState();
 }
