@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messio/config/Palette.dart';
+import 'package:messio/pages/ConversationBottomSheet.dart';
 import 'package:messio/widgets/ChatAppBar.dart';
 import 'package:messio/widgets/ChatListWidget.dart';
 import 'package:messio/widgets/InputWidget.dart';
@@ -12,10 +13,13 @@ class ConversationPage extends StatefulWidget {
 }
 
 class _ConversationPageState extends State<ConversationPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: ChatAppBar(), // Custom app bar for chat screen
         body: Container(
           color: Palette.chatBackgroundColor,
@@ -23,11 +27,16 @@ class _ConversationPageState extends State<ConversationPage> {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  ChatListWidget(), //Chat list
+                  ChatListWidget(),
                   GestureDetector(
                     child: InputWidget(),
                     onPanUpdate: (details) {
-                      if (details.delta.dy < 0) {}
+                      if (details.delta.dy < 0) {
+                        _scaffoldKey.currentState
+                            .showBottomSheet<Null>((BuildContext context) {
+                          return ConversationBottomSheet();
+                        });
+                      }
                     },
                   ) // The input widget
                 ],

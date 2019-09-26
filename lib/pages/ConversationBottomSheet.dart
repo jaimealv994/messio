@@ -8,6 +8,8 @@ class ConversationBottomSheet extends StatefulWidget {
   @override
   _ConversationBottomSheetState createState() =>
       _ConversationBottomSheetState();
+
+  const ConversationBottomSheet();
 }
 
 class _ConversationBottomSheetState extends State<ConversationBottomSheet> {
@@ -25,20 +27,22 @@ class _ConversationBottomSheetState extends State<ConversationBottomSheet> {
                 style: Styles.textHeading,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(
+              height: 20,
+            ),
             ListView.separated(
-              itemBuilder: (context, idex) {
-                return ChatRowWidget();
-              },
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              itemCount: 5,
               separatorBuilder: (context, index) => Padding(
                 padding: EdgeInsets.only(left: 75, right: 20),
                 child: Divider(
                   color: Palette.accentColor,
                 ),
               ),
-              itemCount: 5,
-              physics: ClampingScrollPhysics(),
-              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return ChatRowWidget();
+              },
             )
           ],
         ),
